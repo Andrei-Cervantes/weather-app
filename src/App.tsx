@@ -1,10 +1,14 @@
-import { Button } from "./components/ui/button";
+import Search from "./components/search/Search";
 
 const App = () => {
+  const handleOnSearchChange = (search: string) => {
+    console.log(search);
+  };
   return (
-    <div>
-      <h1 className="text-red-500 italic underline text-2xl">Hello World</h1>
-      <Button variant="default">Click me</Button>
+    <div className="bg-zinc-900 min-h-screen p-4">
+      <div className="px-8">
+        <Search onSearchChange={handleOnSearchChange} />
+      </div>
     </div>
   );
 };
