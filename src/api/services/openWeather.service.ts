@@ -11,7 +11,7 @@ export const useOpenWeatherService = () => {
   const fetchCurrentWeather = async (lat: number, lon: number) => {
     const response = await GET<IWeatherResponse>({
       url: "/weather",
-      params: { lat, lon },
+      params: { lat, lon, units: "metric" },
     });
 
     return response.data;
@@ -20,7 +20,7 @@ export const useOpenWeatherService = () => {
   const fetchForecast = async (lat: number, lon: number) => {
     const response = await GET<IForecastResponse>({
       url: "/forecast",
-      params: { lat, lon },
+      params: { lat, lon, units: "metric" },
     });
 
     return response.data;

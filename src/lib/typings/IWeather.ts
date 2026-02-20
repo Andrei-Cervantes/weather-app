@@ -1,6 +1,8 @@
+import type { WeatherIconCode } from "@/assets/weatherIcon";
+
 export interface IWeather {
   description: string;
-  icon: string;
+  icon: WeatherIconCode;
   id: number;
   main: string;
 }
@@ -51,6 +53,10 @@ export interface IWeatherResponse {
   visibility: number;
   weather: IWeather[];
   wind: IWind;
+}
+
+export interface ICityWeather extends IWeatherResponse {
+  name: string;
 }
 
 export interface IForecastResponse {
