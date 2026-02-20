@@ -4,6 +4,7 @@ import debounce from "lodash.debounce";
 
 interface SearchWithSuggestionsProps<T> {
   onSearch: (value: string) => void;
+  onSelect?: (item: T) => void;
   suggestions: T[];
   isLoading?: boolean;
   renderSuggestion: (item: T) => ReactNode;
@@ -12,6 +13,7 @@ interface SearchWithSuggestionsProps<T> {
 
 const SearchWithSuggestions = <T,>({
   onSearch,
+  onSelect,
   suggestions,
   isLoading,
   renderSuggestion,
@@ -50,6 +52,7 @@ const SearchWithSuggestions = <T,>({
 
     setValue(value);
     onSearch(value);
+    onSelect?.(item);
     setIsOpen(false);
   };
 
