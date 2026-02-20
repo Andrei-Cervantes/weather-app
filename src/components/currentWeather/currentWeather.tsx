@@ -8,11 +8,11 @@ interface CurrentWeatherProps {
 
 const CurrentWeather = ({ city }: CurrentWeatherProps) => {
   const { fetchCurrentWeather, fetchForecast } = useOpenWeatherService();
-  const { data, isLoading } = useQuery({
+  const { data: weatherData, isLoading } = useQuery({
     queryKey: ["currentWeather", city?.id],
     queryFn: () => {
       if (!city) return null;
-      fetchCurrentWeather(city.latitude, city.longitude);
+      return fetchCurrentWeather(city.latitude, city.longitude);
     },
     enabled: !!city,
   });
@@ -26,7 +26,7 @@ const CurrentWeather = ({ city }: CurrentWeatherProps) => {
     enabled: !!city,
   });
 
-  console.log("Current Weather Data:", data);
+  console.log("Current Weather Data:", weatherData);
   console.log("Forecast Data:", forecastData);
 
   return (

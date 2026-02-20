@@ -11,7 +11,6 @@ export const useRapidService = () => {
       params: { minPopulation: 100000, namePrefix: searchInput },
     });
 
-    console.log(response);
     return response.data;
   };
 

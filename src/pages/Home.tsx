@@ -16,6 +16,8 @@ const Home = () => {
     enabled: !!search.trim(),
   });
 
+  console.log("Hello from Home component");
+
   return (
     <main className="bg-zinc-900 min-h-screen p-4 text-white">
       <div className="px-8">
