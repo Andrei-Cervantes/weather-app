@@ -24,7 +24,14 @@ const Home = () => {
           onSelect={setSelectedCity}
           suggestions={cities?.data ?? []}
           isLoading={isLoading}
-          renderSuggestion={(city) => <span>{city.name}</span>}
+          renderSuggestion={(city) => (
+            <>
+              {city.name}, {city.country}
+              <span className="ml-2 text-xs text-zinc-400">
+                {city.countryCode}
+              </span>
+            </>
+          )}
           getSuggestionValue={(city) => city.name}
         />
       </div>

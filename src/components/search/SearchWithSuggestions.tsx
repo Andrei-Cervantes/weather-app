@@ -61,14 +61,14 @@ const SearchWithSuggestions = <T,>({
       <Input value={value} onChange={(e) => handleChange(e.target.value)} />
 
       {isOpen && (
-        <div className="absolute left-0 right-0 bg-zinc-800 mt-2 rounded shadow-lg">
+        <div className="absolute left-0 right-0 bg-zinc-800 mt-4 mx-12 rounded shadow-lg">
           {isLoading && <div className="p-2">Loading...</div>}
 
           {!isLoading &&
             suggestions.map((item, index) => (
               <div
                 key={index}
-                className="p-2 hover:bg-zinc-700 cursor-pointer"
+                className="p-3 hover:bg-zinc-700 cursor-pointer"
                 onClick={() => handleClickItem(item)}
               >
                 {renderSuggestion(item)}
