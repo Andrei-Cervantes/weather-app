@@ -7,7 +7,7 @@ interface CurrentWeatherProps {
 }
 
 const CurrentWeather = ({ city }: CurrentWeatherProps) => {
-  const { fetchCurrentWeather } = useOpenWeatherService();
+  const { fetchCurrentWeather, fetchForecast } = useOpenWeatherService();
   const { data, isLoading } = useQuery({
     queryKey: ["currentWeather", city?.id],
     queryFn: () => {
@@ -17,12 +17,22 @@ const CurrentWeather = ({ city }: CurrentWeatherProps) => {
     enabled: !!city,
   });
 
+  const { data: forecastData, isLoading: isForecastLoading } = useQuery({
+    queryKey: ["forecast", city?.id],
+    queryFn: () => {
+      if (!city) return null;
+      return fetchForecast(city.latitude, city.longitude);
+    },
+    enabled: !!city,
+  });
+
   console.log("Current Weather Data:", data);
+  console.log("Forecast Data:", forecastData);
 
   return (
     <section className="py-4 px-8">
-      {isLoading ? (
-        <p>Loading current weather...</p>
+      {isLoading && isForecastLoading ? (
+        <p>Loading current weather and forecast...</p>
       ) : (
         <div>
           <h1>Current Weather</h1>

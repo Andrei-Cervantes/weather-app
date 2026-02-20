@@ -13,5 +13,14 @@ export const useOpenWeatherService = () => {
     return response.data;
   };
 
-  return { fetchCurrentWeather };
+  const fetchForecast = async (lat: number, lon: number) => {
+    const response = await GET({
+      url: "/forecast",
+      params: { lat, lon },
+    });
+
+    return response.data;
+  };
+
+  return { fetchCurrentWeather, fetchForecast };
 };
