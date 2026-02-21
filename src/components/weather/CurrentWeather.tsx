@@ -1,4 +1,6 @@
 import type { ICityWeather } from "@/lib/typings/IWeather";
+import { LoaderCircle, Thermometer, Droplet, Wind, Gauge } from "lucide-react";
+import { Icons } from "@/assets/weatherIcon";
 
 interface CurrentWeatherProps {
   data: ICityWeather | null;
@@ -6,17 +8,45 @@ interface CurrentWeatherProps {
 }
 
 const CurrentWeather = ({ data, isLoading }: CurrentWeatherProps) => {
+  if (!data) return null;
+
   return (
-    <section className="py-4 px-8">
+    <div className="mt-32 mx-8 flex flex-row justify-between items-center">
       {isLoading ? (
-        <p>Loading current weather...</p>
+        <LoaderCircle className="animate-spin" />
       ) : (
-        <div>
-          <h1>Current Weather</h1>
-          {data && <p>City: {data.name}</p>}
-        </div>
+        <>
+          <div className="flex items-end gap-2">
+            <p className="text-[64px]">{data?.main.temp}</p>
+            <div className="mb-3">
+              <p>°C</p>
+              <p>{data.weather[0].description}</p>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <img
+              src={Icons[data.weather[0].icon]}
+              alt="Weather Icon"
+              className="h-40 w-40"
+            />
+            <div className="space-y-2">
+              <p className="flex gap-2">
+                <Thermometer /> Feels like: {data.main.feels_like} °C
+              </p>
+              <p className="flex gap-2">
+                <Droplet /> Humidity: {data.main.humidity}%
+              </p>
+              <p className="flex gap-2">
+                <Gauge /> Pressure: {data.main.pressure} hPa
+              </p>
+              <p className="flex gap-2">
+                <Wind /> Wind: {data.wind.speed} m/s
+              </p>
+            </div>
+          </div>
+        </>
       )}
-    </section>
+    </div>
   );
 };
 

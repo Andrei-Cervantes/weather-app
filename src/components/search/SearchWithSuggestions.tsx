@@ -58,7 +58,11 @@ const SearchWithSuggestions = <T,>({
 
   return (
     <>
-      <Input value={value} onChange={(e) => handleChange(e.target.value)} />
+      <Input
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        placeholder="Search for cities..."
+      />
 
       {isOpen && (
         <div className="absolute left-0 right-0 bg-zinc-800 mt-4 mx-12 rounded shadow-lg">
