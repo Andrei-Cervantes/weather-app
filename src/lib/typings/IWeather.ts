@@ -55,10 +55,6 @@ export interface IWeatherResponse {
   wind: IWind;
 }
 
-export interface ICityWeather extends IWeatherResponse {
-  name: string;
-}
-
 export interface IForecastResponse {
   city: {
     coord: ICoord;
@@ -85,4 +81,8 @@ export interface IForecastResponse {
     weather: IWeather[];
     wind: IWind;
   }[];
+}
+
+export interface ICityForecast extends IForecastResponse {
+  name: string;
 }
