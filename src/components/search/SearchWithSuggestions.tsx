@@ -57,7 +57,7 @@ const SearchWithSuggestions = <T,>({
   };
 
   return (
-    <>
+    <div>
       <Input
         value={value}
         onChange={(e) => handleChange(e.target.value)}
@@ -65,7 +65,7 @@ const SearchWithSuggestions = <T,>({
       />
 
       {isOpen && (
-        <div className="absolute left-0 right-0 bg-zinc-800 mt-4 mx-12 rounded shadow-lg">
+        <div className="absolute left-0 right-0 bg-zinc-800 mt-2 mx-8 rounded shadow-lg">
           {isLoading && <div className="p-2">Loading...</div>}
 
           {!isLoading &&
@@ -80,7 +80,7 @@ const SearchWithSuggestions = <T,>({
             ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
