@@ -1,6 +1,6 @@
 import type { ICityForecast } from "@/lib/typings/IWeather";
-import { Icons } from "@/assets/weatherIcon";
 import { Card } from "../ui/card";
+import ForecastCard from "./ForecastCard";
 
 interface ForecastProps {
   data: ICityForecast | null | undefined;
@@ -15,9 +15,7 @@ const Forecast = ({ data, isLoading }: ForecastProps) => {
       {isLoading ? <p>Loading forecast...</p> : <div>{data?.name}</div>}
       <div className="flex">
         {data?.list.map((item) => (
-          <div>
-            <img src={Icons[item.weather[0].icon]} alt="" />
-          </div>
+          <ForecastCard item={item} />
         ))}
       </div>
     </Card>

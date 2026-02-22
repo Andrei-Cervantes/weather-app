@@ -20,7 +20,7 @@ export const useOpenWeatherService = () => {
   const fetchForecast = async (lat: number, lon: number) => {
     const response = await GET<IForecastResponse>({
       url: "/forecast",
-      params: { lat, lon, units: "metric" },
+      params: { lat, lon, units: "metric", cnt: 7 },
     });
 
     return response.data;
