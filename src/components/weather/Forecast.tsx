@@ -12,12 +12,23 @@ const Forecast = ({ data, isLoading }: ForecastProps) => {
 
   return (
     <Card className="p-4">
-      {isLoading ? <p>Loading forecast...</p> : <div>{data?.name}</div>}
-      <div className="flex">
-        {data?.list.map((item) => (
-          <ForecastCard item={item} />
-        ))}
-      </div>
+      <section aria-labelledby="forecast-heading">
+        <h2 id="forecast-heading" className="text-lg font-semibold">
+          {data.name} Forecast
+        </h2>
+      </section>
+
+      {isLoading ? (
+        <p>Loading forecast...</p>
+      ) : (
+        <ul className="flex gap-4 overflow-x-auto">
+          {data.list.map((item) => (
+            <li key={item.dt}>
+              <ForecastCard item={item} />
+            </li>
+          ))}
+        </ul>
+      )}
     </Card>
   );
 };
