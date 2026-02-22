@@ -17,6 +17,7 @@ const Home = () => {
     queryKey: ["cities", search],
     queryFn: () => fetchCities(search),
     enabled: !!search.trim(),
+    refetchOnWindowFocus: false,
   });
 
   const { fetchCurrentWeather, fetchForecast } = useOpenWeatherService();
@@ -27,6 +28,7 @@ const Home = () => {
       return fetchCurrentWeather(selectedCity.latitude, selectedCity.longitude);
     },
     enabled: !!selectedCity,
+    staleTime: 10 * 60 * 1000, // 10 minutes
   });
 
   const { data: forecastData, isLoading: isForecastLoading } = useQuery({
@@ -36,6 +38,7 @@ const Home = () => {
       return fetchForecast(selectedCity.latitude, selectedCity.longitude);
     },
     enabled: !!selectedCity,
+    staleTime: 10 * 60 * 1000, // 10 minutes
   });
 
   const formatForecastData = useMemo(() => {
