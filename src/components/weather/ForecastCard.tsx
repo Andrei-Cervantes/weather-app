@@ -8,11 +8,13 @@ interface ForecastCardProps {
 const ForecastCard = ({ item }: ForecastCardProps) => {
   const iconCode = item.weather[0].icon;
   const description = item.weather[0].description;
+  const date = new Date(item.dt_txt.replace(" ", "T"));
 
   return (
     <article className="flex flex-col items-center p-2">
-      <time dateTime={item.dt_txt}>
-        {new Date(item.dt_txt).toLocaleDateString()}
+      <time dateTime={date.toISOString()}>
+        {date.toLocaleDateString()}{" "}
+        {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
       </time>
 
       <img src={Icons[iconCode]} alt={description} className="w-10 h-10" />
