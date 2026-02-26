@@ -9,6 +9,7 @@ interface SearchWithSuggestionsProps<T> {
   isLoading?: boolean;
   renderSuggestion: (item: T) => ReactNode;
   getSuggestionValue: (item: T) => string;
+  placeholder?: string;
 }
 
 const SearchWithSuggestions = <T,>({
@@ -18,6 +19,7 @@ const SearchWithSuggestions = <T,>({
   isLoading,
   renderSuggestion,
   getSuggestionValue,
+  placeholder = "Search...",
 }: SearchWithSuggestionsProps<T>) => {
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +63,8 @@ const SearchWithSuggestions = <T,>({
       <Input
         value={value}
         onChange={(e) => handleChange(e.target.value)}
-        placeholder="Search for cities..."
+        placeholder={placeholder}
+        className="w-100 text-black"
       />
 
       {isOpen && (

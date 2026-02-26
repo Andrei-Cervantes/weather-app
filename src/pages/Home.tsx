@@ -62,53 +62,52 @@ const Home = () => {
 
   return (
     <main
-      className="relative min-h-screen flex items-center justify-center overflow-hidden text-white"
+      className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden text-white bg-cover bg-center bg-no-repeat py-15 px-45 space-y-16"
       aria-label="Weather application"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      {/* Decorative background */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-lg scale-110"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      />
-      <div aria-hidden="true" className="absolute inset-0 bg-black/40" />
-
-      <article className="relative z-10 w-4/5 max-w-250 rounded-4xl p-8 bg-zinc-900/70 shadow-2xl space-y-10">
-        {/* Search Section */}
-        <header>
-          <h1 className="sr-only">Search city weather</h1>
-          <SearchWithSuggestions<ICity>
-            onSearch={setSearch}
-            onSelect={setSelectedCity}
-            suggestions={cities?.data ?? []}
-            isLoading={isCitiesLoading}
-            renderSuggestion={(city) => (
-              <>
-                {city.name}, {city.country}
-                <span className="ml-2 text-xs text-zinc-400">
-                  {city.countryCode}
-                </span>
-              </>
-            )}
-            getSuggestionValue={(city) => city.name}
-          />
-        </header>
-
-        {/* Current Weather Section */}
-        <section aria-labelledby="current-weather-heading">
-          <h2 id="current-weather-heading" className="sr-only">
-            Current Weather
-          </h2>
-          <CurrentWeather data={weatherData} isLoading={isWeatherLoading} />
-        </section>
-
-        {/* Forecast Section */}
-        <section aria-labelledby="forecast-heading">
-          <h2 id="forecast-heading" className="sr-only">
-            Weather Forecast
-          </h2>
-          <Forecast data={formattedForecast} isLoading={isForecastLoading} />
-        </section>
+      <header>
+        <h1 className="font-bold text-4xl italic">Aeris</h1>
+        <SearchWithSuggestions<ICity>
+          onSearch={setSearch}
+          onSelect={setSelectedCity}
+          suggestions={cities?.data ?? []}
+          isLoading={isCitiesLoading}
+          renderSuggestion={(city) => (
+            <>
+              {city.name}, {city.country}
+              <span className="ml-2 text-xs text-zinc-400">
+                {city.countryCode}
+              </span>
+            </>
+          )}
+          getSuggestionValue={(city) => city.name}
+          placeholder="Search for cities..."
+        />
+      </header>
+      <article className="flex gap-4">
+        {selectedCity && (
+          <>
+            <section
+              aria-label="Weather information"
+              className="flex flex-col md:flex-row gap-4"
+            >
+              <h2 id="current-weather-heading" className="sr-only">
+                Current Weather
+              </h2>
+              <CurrentWeather data={weatherData} isLoading={isWeatherLoading} />
+            </section>
+            <section>
+              <h2 id="forecast-heading" className="sr-only">
+                Weather Forecast
+              </h2>
+              <Forecast
+                data={formattedForecast}
+                isLoading={isForecastLoading}
+              />
+            </section>
+          </>
+        )}
       </article>
     </main>
   );

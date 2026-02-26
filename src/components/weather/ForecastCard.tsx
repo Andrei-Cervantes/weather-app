@@ -1,5 +1,6 @@
 import { Icons } from "@/assets/weatherIcon";
 import type { ICityForecast } from "@/lib/typings/IWeather";
+import { capitalizeWords } from "@/lib/utils";
 
 interface ForecastCardProps {
   item: ICityForecast["list"][number];
@@ -7,19 +8,27 @@ interface ForecastCardProps {
 
 const ForecastCard = ({ item }: ForecastCardProps) => {
   const iconCode = item.weather[0].icon;
-  const description = item.weather[0].description;
+  const description = capitalizeWords(item.weather[0].description);
   const date = new Date(item.dt_txt.replace(" ", "T"));
 
   return (
-    <article className="flex flex-col items-center p-2">
-      <time dateTime={date.toISOString()}>
-        {date.toLocaleDateString()}{" "}
-        {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+    <article className="flex items-center gap-4">
+      <time
+        dateTime={date.toISOString()}
+        className="flex flex-col items-center text-center"
+      >
+        <span>{date.toLocaleDateString()}</span>
+        <span>
+          {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+        </span>
       </time>
 
-      <img src={Icons[iconCode]} alt={description} className="w-10 h-10" />
+      <img src={Icons[iconCode]} alt={description} className="w-20 h-20" />
 
-      <p>{Math.round(item.main.temp)}°C</p>
+      <p>
+        {Math.round(item.main.temp_min)}°C - {Math.round(item.main.temp_max)}°C
+      </p>
+      <p>{description}</p>
     </article>
   );
 };
