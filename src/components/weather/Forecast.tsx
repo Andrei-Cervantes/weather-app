@@ -24,7 +24,7 @@ const Forecast = ({ data, isLoading }: ForecastProps) => {
       {isLoading ? (
         <p>Loading forecast...</p>
       ) : (
-        <ul className="flex flex-col gap-4 overflow-x-auto">
+        <ul className="flex flex-col gap-6 overflow-x-auto">
           {data.list.slice(0, 7).map((item) => (
             <li key={item.dt}>
               <ForecastCard item={item} />

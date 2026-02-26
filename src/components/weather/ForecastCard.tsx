@@ -23,7 +23,7 @@ const ForecastCard = ({ item }: ForecastCardProps) => {
         </span>
       </time>
 
-      <img src={Icons[iconCode]} alt={description} className="w-20 h-20" />
+      <img src={Icons[iconCode]} alt={description} className="w-22" />
 
       <p>
         {Math.round(item.main.temp_min)}°C - {Math.round(item.main.temp_max)}°C

@@ -36,7 +36,7 @@ const CurrentWeather = ({ data, isLoading }: CurrentWeatherProps) => {
       <img
         src={Icons[data.weather[0].icon]}
         alt={`Weather condition: ${description}`}
-        className="h-60 w-60"
+        className="w-68"
       />
     );
   };
