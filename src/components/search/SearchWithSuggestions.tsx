@@ -59,16 +59,16 @@ const SearchWithSuggestions = <T,>({
   };
 
   return (
-    <div>
+    <div className="relative w-100">
       <Input
         value={value}
         onChange={(e) => handleChange(e.target.value)}
         placeholder={placeholder}
-        className="w-100 text-black"
+        className="w-full text-black"
       />
 
       {isOpen && (
-        <div className="absolute left-0 right-0 bg-zinc-800 mt-2 mx-8 rounded shadow-lg">
+        <div className="absolute top-full left-0 w-full bg-zinc-800 mt-2 rounded shadow-lg">
           {isLoading && <div className="p-2">Loading...</div>}
 
           {!isLoading &&
