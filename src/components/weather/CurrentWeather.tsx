@@ -43,7 +43,7 @@ const CurrentWeather = ({ data, isLoading }: CurrentWeatherProps) => {
 
   return (
     <article
-      className="h-full flex flex-row justify-between items-center"
+      className="h-full w-full flex flex-row justify-between items-center"
       aria-busy={isLoading}
     >
       {isLoading ? (
@@ -52,10 +52,10 @@ const CurrentWeather = ({ data, isLoading }: CurrentWeatherProps) => {
           <span className="sr-only">Loading current weather...</span>
         </div>
       ) : (
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col w-full justify-between h-full gap-4">
           <section
             aria-label="Current weather condition"
-            className="flex flex-col items-center"
+            className="flex flex-col items-center h-full"
           >
             {renderIcon()}
             <p className="text-6xl flex leading-14">
@@ -66,7 +66,7 @@ const CurrentWeather = ({ data, isLoading }: CurrentWeatherProps) => {
           </section>
           <section
             aria-label="Current weather details"
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-4 w-full"
           >
             <CWDetailsCard>
               <Thermometer size={48} />

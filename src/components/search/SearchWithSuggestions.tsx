@@ -59,7 +59,7 @@ const SearchWithSuggestions = <T,>({
   };
 
   return (
-    <div className="relative w-100">
+    <div className="relative max-w-100 md:w-100">
       <Input
         value={value}
         onChange={(e) => handleChange(e.target.value)}

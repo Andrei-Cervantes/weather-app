@@ -62,12 +62,14 @@ const Home = () => {
 
   return (
     <main
-      className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden text-white bg-cover bg-center bg-no-repeat py-15 px-45 space-y-16"
+      className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden text-white bg-cover bg-center bg-no-repeat py-15 px-8 space-y-16"
       aria-label="Weather application"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <header>
-        <h1 className="font-bold text-4xl italic">Aeris</h1>
+        <h1 className="font-bold text-4xl italic text-center md:text-start">
+          Aeris
+        </h1>
         <SearchWithSuggestions<ICity>
           onSearch={setSearch}
           onSelect={setSelectedCity}
@@ -85,13 +87,10 @@ const Home = () => {
           placeholder="Search for cities..."
         />
       </header>
-      <article className="flex gap-4">
+      <article className="flex flex-col md:flex-row gap-4">
         {selectedCity && (
           <>
-            <section
-              aria-label="Weather information"
-              className="flex flex-col md:flex-row gap-4"
-            >
+            <section aria-label="Weather information" className="flex gap-4">
               <h2 id="current-weather-heading" className="sr-only">
                 Current Weather
               </h2>
